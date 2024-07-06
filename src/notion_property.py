@@ -1,6 +1,6 @@
 import datetime
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
 
 class NotionProp(ABC):
@@ -22,7 +22,7 @@ class NotionPropDate(NotionProp):
             self,
             name: str,
             start_datetime: datetime.date | datetime.datetime,
-            duration: Optional[datetime.timedelta] = None
+            duration: datetime.timedelta | None = None
     ) -> None:
         super().__init__(name)
         self.start_datetime = start_datetime

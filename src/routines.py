@@ -16,13 +16,13 @@ class Routine:
 
     def __init__(
             self,
-            page: NotionPage,
+            prototype_page: NotionPage,
             repeat: set[int],
             date_prop_name: str,
             start_time: datetime.time | None = None,
             duration: datetime.timedelta | None = None,
     ) -> None:
-        self.page = page
+        self.prototype_page = prototype_page
         self.repeat = repeat
         self.date_prop_name = date_prop_name
         self.start_time = start_time
@@ -40,21 +40,21 @@ class Routine:
             duration=self.duration
         )
         return NotionPage(
-            parent_db_id=self.page.parent_db_id,
-            title=self.page.title,
-            props=self.page.props + [date_prop],
-            icon=self.page.icon
+            parent_db_id=self.prototype_page.parent_db_id,
+            title=self.prototype_page.title,
+            props=self.prototype_page.props + [date_prop],
+            icon=self.prototype_page.icon
         )
 
 class TimeFrame:
 
-    def __init__(self, first_date: datetime.date, duration: datetime.timedelta) -> None:
+    def __init__(self, first_date: datetime.date, length: datetime.timedelta) -> None:
         self.first_date = first_date
-        self.duration = duration
+        self.length = length
     
     def __iter__(self):
         DAY = datetime.timedelta(days=1)
-        num_day = self.duration // DAY
+        num_day = self.length // DAY
         return iter([self.first_date + DAY * i for i in range(num_day)])
 
 
