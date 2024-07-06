@@ -3,11 +3,14 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
+# Abstract base class representing a property of a Notion page
 class NotionProp(ABC):
 
+    # Every child class has to be initialized with the name of the property
     def __init__(self, name: str) -> None:
         self.name = name
     
+    # Abstract method to generate a JSON representation of the property
     @abstractmethod
     def json(self) -> dict[str, Any]:
         raise NotImplementedError("this method should be overwritten")
@@ -16,8 +19,10 @@ class NotionProp(ABC):
         return repr(self.json())
 
 
+# Class representing a date property in Notion
 class NotionPropDate(NotionProp):
 
+    # Initialize the NotionPropDate class with the name of the date property, start datetime, and optional duration
     def __init__(
             self,
             name: str,
@@ -40,8 +45,10 @@ class NotionPropDate(NotionProp):
         return result
 
 
+# Class representing a multi-select property in Notion
 class NotionPropMultiSelect(NotionProp):
 
+    # Initialize the NotionPropMultiSelect class with the name of the multi-select property and a list of options
     def __init__(self, name: str, options: list[str]) -> None:
         super().__init__(name)
         self.options = options
@@ -50,8 +57,10 @@ class NotionPropMultiSelect(NotionProp):
         return {"multi_select": [{"name": option} for option in self.options]}
 
 
+# Class representing a title property in Notion
 class NotionPropPlainTitle(NotionProp):
 
+    # Initialize the NotionPropPlainTitle class with the name of the title property and title
     def __init__(self, name: str, title: str) -> None:
         super().__init__(name)
         self.title = title
