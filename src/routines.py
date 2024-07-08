@@ -47,7 +47,7 @@ class Routine:
         )
         # Return a new Notion page with the date property added to the prototype page properties
         return NotionPage(
-            parent_db_id=self.prototype_page.parent_db_id,
+            database_id=self.prototype_page.database_id,
             title=self.prototype_page.title,
             props=self.prototype_page.props + [date_prop],
             icon=self.prototype_page.icon

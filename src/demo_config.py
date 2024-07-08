@@ -9,8 +9,7 @@ from notion_icon import NotionIcon
 from notion_property import NotionPropMultiSelect, NotionPropPlainTitle
 from routines import (
     EVERY_MON, EVERY_TUE, EVERY_WED, EVERY_THU, EVERY_FRI, EVERY_SAT, EVERY_SUN, EVERY_DAY,
-    Routine, TimeFrame,
-    routines_to_pages
+    Routine, routines_to_pages, TimeFrame,
 )
 
 async def create_routine_pages_demo() -> None:
@@ -45,7 +44,7 @@ def get_routines() -> list[Routine]:
 
     # Load parent database ID from .env file
     dotenv.load_dotenv()
-    PARENT_DB_ID: str = os.getenv("NOTION_DATABASE_ID")
+    DATABASE_ID: str = os.getenv("NOTION_DATABASE_ID")
 
     # Define names of the properties
     PROP_TITLE: str = "Name"
@@ -59,7 +58,7 @@ def get_routines() -> list[Routine]:
 
     # Create a prototype Notion page for meetings
     prototype_page_meeting = NotionPage(
-        parent_db_id=PARENT_DB_ID,
+        database_id=DATABASE_ID,
         title=NotionPropPlainTitle(name=PROP_TITLE, title="Meeting"),
         props=[NotionPropMultiSelect(name=PROP_TAGS, options=["Research"])],
         icon=MyNotionIcon.MEETING
@@ -75,7 +74,7 @@ def get_routines() -> list[Routine]:
 
     # Create a prototype Notion page for classes
     prototype_page_class = NotionPage(
-        parent_db_id=PARENT_DB_ID,
+        database_id=DATABASE_ID,
         title=NotionPropPlainTitle(name=PROP_TITLE, title="Class"),
         props=[NotionPropMultiSelect(name=PROP_TAGS, options=["Teaching"])],
         icon=MyNotionIcon.TEACHING
@@ -98,7 +97,7 @@ def get_routines() -> list[Routine]:
 
     # Create a prototype Notion page for the gym
     prototype_page_gym = NotionPage(
-        parent_db_id=PARENT_DB_ID,
+        database_id=DATABASE_ID,
         title=NotionPropPlainTitle(name=PROP_TITLE, title="Gym"),
         props=[NotionPropMultiSelect(name=PROP_TAGS, options=["Personal"])],
         icon=MyNotionIcon.GYM

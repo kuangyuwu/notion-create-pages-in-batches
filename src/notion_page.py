@@ -8,12 +8,12 @@ class NotionPage:
     # Initialize the NotionPage class with parent database ID, title, properties, and icon (optional)
     def __init__(
             self,
-            parent_db_id: str,
+            database_id: str,
             title: NotionPropPlainTitle,
             props: list[NotionProp],
             icon: NotionIcon | None = None
     ) -> None:
-        self.parent_db_id = parent_db_id
+        self.database_id = database_id
         self.title = title
         self.props = props
         self.icon = icon
@@ -24,7 +24,7 @@ class NotionPage:
             # Include the parent database ID
             "parent": {
                 "type": "database_id",
-                "database_id": self.parent_db_id,
+                "database_id": self.database_id,
             },
             # Generate JSON for each property and include it in the properties dictionary
             "properties": {
