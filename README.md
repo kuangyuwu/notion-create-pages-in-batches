@@ -151,7 +151,7 @@ _class_ routines.**Routine**
   - date_prop_name (str): The name of the date property.
   - start_time (datetime.time, optional): The start time of the routine.
   - duration (datetime.timedelta, optional): The duration of the routine.
-- The following constants can be used as arguments
+- The following constants can be used in the repeat attribute of the Routine class to specify the days on which the routine should occur.
   - routines.EVERY_MON = {0}
   - routines.EVERY_TUE = {1}
   - routines.EVERY_WED = {2}
