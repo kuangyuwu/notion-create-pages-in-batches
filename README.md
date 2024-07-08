@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
 ### Pre-requisite
 
-- Python: >= 3.8
+- Python: >= 3.11
 - [python-dotenv](https://pypi.org/project/python-dotenv/): 1.0.1
 - [requests](https://pypi.org/project/requests/): 2.31.0
 
